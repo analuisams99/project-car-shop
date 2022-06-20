@@ -11,21 +11,11 @@ const id = "123f7136a3a723e56bd05bb1";
 
 describe('Testa camada de Service de Car', () => { 
   beforeEach(() => {
-    sinon
-      .stub(carModel, 'create')
-      .resolves(validCar);
-    sinon
-      .stub(carModel, 'read')
-      .resolves(dbCars);
-    sinon
-      .stub(carModel, 'readOne')
-      .resolves(dbCars[0]);
-    sinon
-      .stub(carModel, 'update')
-      .resolves(dbCars[0]);
-    sinon
-      .stub(carModel, 'delete')
-      .resolves(dbCars[1]);
+    sinon.stub(carModel, 'create').resolves(validCar);
+    sinon.stub(carModel, 'read').resolves(dbCars);
+    sinon.stub(carModel, 'readOne').resolves(dbCars[0]);
+    sinon.stub(carModel, 'update').resolves(dbCars[0]);
+    sinon.stub(carModel, 'delete').resolves(dbCars[1]);
   })
 
   afterEach(() => {
@@ -43,7 +33,6 @@ describe('Testa camada de Service de Car', () => {
 
     it('Se a função retorna um erro, caso tente criar um carro inválido', async () => {
       const created = await carService.create(wrongCar as unknown as any);
-  
       expect(created).to.be.an('object');
       expect(created).to.have.own.property('error');
     })
